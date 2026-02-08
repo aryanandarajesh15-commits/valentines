@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Be My Valentine 💘</title>
+
+<style>
+  * {
+    box-sizing: border-box;
+    font-family: 'Comic Sans MS', cursive;
+  }
+
+  body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.18);
+    padding: 50px;
+    border-radius: 30px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 40px 80px rgba(0,0,0,0.35);
+    animation: popIn 1s ease;
+    z-index: 2;
+    max-width: 90%;
+  }
+
+  h1 {
+    font-size: 3.2rem;
+    margin-bottom: 10px;
+    animation: glow 2s infinite alternate;
+  }
+
+  p {
+    font-size: 1.4rem;
+    margin-bottom: 30px;
+  }
+
+  .buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  button {
+    border: none;
+    padding: 15px 35px;
+    font-size: 1.2rem;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .yes {
+    background: white;
+    color: #ff4d6d;
+  }
+
+  .yes:hover {
+    transform: scale(1.25);
+  }
+
+  .no {
+    background: #ff4d6d;
+    color: white;
+    position: relative;
+  }
+
+  .celebrate {
+    display: none;
+    font-size: 2rem;
+    margin-top: 30px;
+    animation: fadeIn 1s ease forwards;
+  }
+
+  @keyframes glow {
+    from { text-shadow: 0 0 10px #fff; }
+    to { text-shadow: 0 0 35px #ff2f6d; }
+  }
+
+  @keyframes popIn {
+    from { transform: scale(0); }
+    to { transform: scale(1); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .heart {
+    position: absolute;
+    font-size: 20px;
+    animation: floatUp linear forwards;
+    opacity: 0.9;
+  }
+
+  @keyframes floatUp {
+    from { transform: translateY(0); opacity: 1; }
+    to { transform: translateY(-120vh); opacity: 0; }
+  }
+</style>
+</head>
+
+<body>
+
+<audio id="music" autoplay loop>
+  <source src="https://cdn.pixabay.com/audio/2022/02/23/audio_3b7b6baf24.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card">
+  <h1>Hey 💖</h1>
+  <p>
+    From <strong>YOUR NAME</strong> 💌<br>
+    To <strong>THEIR NAME</strong> 🥰
+  </p>
+
+  <p>
+    Life is sweeter with you in it…<br>
+    so I have one very important question 😌
+  </p>
+
+  <h1>Will you be my Valentine? 💘</h1>
+
+  <div class="buttons">
+    <button class="yes" onclick="yesClicked()">YES 💕</button>
+    <button class="no" onmouseover="moveNo()">NO 😜</button>
+  </div>
+
+  <div class="celebrate" id="celebrate">
+    💖 YAYYYYY 💖<br>
+    Best decision you’ve ever made 😍<br>
+    I can’t wait to make memories with you 💌
+  </div>
+</div>
+
+<script>
+  function moveNo() {
+    const noBtn = document.querySelector('.no');
+    const x = Math.random() * (window.innerWidth - 120);
+    const y = Math.random() * (window.innerHeight - 60);
+    noBtn.style.position = 'absolute';
+    noBtn.style.left = x + 'px';
+    noBtn.style.top = y + 'px';
+  }
+
+  function yesClicked() {
+    document.getElementById('celebrate').style.display = 'block';
+    for (let i = 0; i < 150; i++) {
+      createHeart();
+    }
+  }
+
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.innerHTML = ['❤️','💖','💕','💗','💞'][Math.floor(Math.random()*5)];
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.bottom = '-20px';
+    heart.style.fontSize = Math.random() * 35 + 20 + 'px';
+    heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 5000);
+  }
+</script>
+
+</body>
+</html>
